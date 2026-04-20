@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avinash Yedururi — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:       #020b18;
+  --bg2:      #041528;
+  --navy:     #071e38;
+  --cyan:     #00d4ff;
+  --cyan2:    #0099cc;
+  --blue:     #1565c0;
+  --text:     #cde4f5;
+  --muted:    #5d8aaa;
+  --white:    #ffffff;
+  --green:    #00e676;
+  --gold:     #ffc107;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Particle bg */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(0,153,204,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 70%, rgba(21,101,192,0.10) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─────────────────────────────
+   NAVBAR
+───────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  height: 70px;
+  background: rgba(2,11,24,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,212,255,0.08);
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: var(--cyan); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--cyan);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--cyan); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--cyan); }
+.nav-links a.active::after { width: 100%; }
+
+/* ─────────────────────────────
+   HERO SECTION
+───────────────────────────── */
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 70px 6% 0;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+/* LEFT TEXT */
+.hero-text { max-width: 580px; }
+
+.hero-greeting {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: var(--cyan);
+  margin-bottom: 0.25rem;
+  animation: fadeSlideUp 0.7s 0.1s both;
+}
+
+.hero-name {
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 0.6rem;
+  animation: fadeSlideUp 0.7s 0.2s both;
+}
+
+.hero-role {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeSlideUp 0.7s 0.3s both;
+}
+
+.hero-role span {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--cyan);
+  animation: typing 3s steps(22) 1s both, blink-caret 0.75s step-end infinite;
+  max-width: 0;
+  animation: typing 2.5s steps(22) 0.8s forwards, blink-caret 0.75s step-end 0.8s infinite;
+}
+
+@keyframes typing {
+  from { max-width: 0; }
+  to   { max-width: 340px; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--cyan); }
+}
+
+.hero-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 2.25rem;
+  max-width: 460px;
+  line-height: 1.8;
+  animation: fadeSlideUp 0.7s 0.4s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.7s 0.5s both;
+}
+
+.btn-primary {
+  padding: 13px 32px;
+  background: var(--cyan);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 0.88rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 20px rgba(0,212,255,0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(0,212,255,0.5);
+}
+
+.btn-outline {
+  padding: 12px 30px;
+  background: transparent;
+  color: var(--cyan);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: 2px solid var(--cyan);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.btn-outline:hover {
+  background: rgba(0,212,255,0.08);
+  transform: translateY(-3px);
+}
+
+/* Social icons */
+.hero-socials {
+  display: flex;
+  gap: 14px;
+  margin-top: 2.5rem;
+  animation: fadeSlideUp 0.7s 0.6s both;
+}
+
+.social-icon {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,212,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--cyan);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.social-icon:hover {
+  background: rgba(0,212,255,0.12);
+  border-color: var(--cyan);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0,212,255,0.3);
+}
+
+/* RIGHT — PROFILE PHOTO */
+.hero-photo-wrap {
+  flex-shrink: 0;
+  animation: fadeSlideUp 0.8s 0.3s both;
+}
+
+.photo-ring {
+  position: relative;
+  width: 320px; height: 320px;
+}
+
+/* Spinning gradient ring */
+.photo-ring::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--cyan),
+    var(--blue),
+    var(--cyan),
+    var(--bg2),
+    var(--cyan)
+  );
+  animation: spin 4s linear infinite;
+  z-index: 0;
+}
+
+/* Glow blur behind ring */
+.photo-ring::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.25), transparent 70%);
+  animation: glow-pulse 3s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes spin  { to { transform: rotate(360deg); } }
+@keyframes glow-pulse {
+  from { opacity: 0.5; transform: scale(0.95); }
+  to   { opacity: 1;   transform: scale(1.05); }
+}
+
+.photo-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 4px solid var(--bg2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Avatar initials when no photo */
+.photo-initials {
+  font-family: 'Poppins', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 800;
+  color: var(--cyan);
+  user-select: none;
+  text-shadow: 0 0 40px rgba(0,212,255,0.6);
+  letter-spacing: -4px;
+}
+
+/* Photo credit label */
+.photo-label {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: var(--bg2);
+  border: 1px solid rgba(0,212,255,0.3);
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ─────────────────────────────
+   SECTION SHARED STYLES
+───────────────────────────── */
+section {
+  padding: 90px 6%;
+  position: relative;
+  z-index: 1;
+}
+
+.section-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.5rem;
+}
+
+.section-heading {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+}
+
+.section-heading span { color: var(--cyan); }
+
+.section-line {
+  width: 60px; height: 4px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  border-radius: 2px;
+  margin-bottom: 3rem;
+}
+
+/* ─────────────────────────────
+   ABOUT
+───────────────────────────── */
+#about {
+  background: var(--bg2);
+  border-top: 1px solid rgba(0,212,255,0.06);
+  border-bottom: 1px solid rgba(0,212,255,0.06);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+  line-height: 1.85;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.a-stat {
+  background: rgba(0,212,255,0.05);
+  border: 1px solid rgba(0,212,255,0.12);
+  border-radius: 14px;
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.a-stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,212,255,0.35);
+}
+
+.a-stat-num {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--cyan);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.a-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* ─────────────────────────────
+   EXPERIENCE
+───────────────────────────── */
+.exp-timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyan), rgba(0,212,255,0.1));
+}
+
+.exp-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.exp-dot {
+  position: absolute;
+  left: -2.95rem;
+  top: 18px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 12px rgba(0,212,255,0.6);
+}
+
+.exp-card {
+  background: var(--navy);
+  border: 1px solid rgba(0,212,255,0.1);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.exp-card:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateX(5px);
+}
+
+.exp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.exp-company {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.exp-role-tag {
+  font-size: 0.75rem;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+.exp-period-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0,212,255,0.1);
+  color: var(--cyan);
+  border: 1px solid rgba(0,212,255,0.25);
+  padding: 5px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.exp-list { list-style: none; }
+.exp-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 0.83rem;
+  color: #8ab4cc;
+  margin-bottom: 7px;
+  line-height: 1.6;
+}
+.exp-list li::before {
+  content: '▹';
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────
+   PROJECTS
+───────────────────────────── */
+#projects { background: var(--bg2); }
+
+.proj-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+.proj-card {
+  background: var(--navy);
+  border: 1px solid rgba(0,212,255,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.proj-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 50px rgba(0,212,255,0.12);
+  border-color: rgba(0,212,255,0.3);
+}
+
+.proj-header {
+  padding: 1.5rem 1.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.proj-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.proj-period-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.2);
+  padding: 4px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.proj-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,212,255,0.3), transparent);
+  margin: 0 1.75rem;
+}
+
+.proj-body {
+  padding: 1rem 1.75rem 1.75rem;
+}
+
+.proj-body ul { list-style: none; }
+.proj-body ul li {
+  display: flex;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #7aadcc;
+  margin-bottom: 7px;
+  line-height: 1.55;
+}
+.proj-body ul li::before {
+  content: '◆';
+  color: rgba(0,212,255,0.5);
+  font-size: 7px;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+/* ─────────────────────────────
+   SKILLS
+───────────────────────────── */
+.skills-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.skill-box {
+  background: var(--navy);
+  border: 1px solid rgba(0,212,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.skill-box:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateY(-4px);
+}
+
+.skill-box-title {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-box-title::before {
+  content: '';
+  width: 18px; height: 2px;
+  background: var(--cyan);
+  border-radius: 2px;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.skill-pill {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 5px 13px;
+  border-radius: 8px;
+  background: rgba(0,212,255,0.07);
+  border: 1px solid rgba(0,212,255,0.15);
+  color: var(--text);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.skill-pill:hover {
+  background: rgba(0,212,255,0.14);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* ─────────────────────────────
+   CERTIFICATIONS
+───────────────────────────── */
+#certifications { background: var(--bg2); }
+
+.cert-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.cert-card {
+  background: var(--navy);
+  border: 1px solid rgba(0,212,255,0.1);
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,212,255,0.35);
+}
+
+.cert-badge {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(21,101,192,0.3));
+  border: 1px solid rgba(0,212,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.cert-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.cert-issuer {
+  font-size: 0.75rem;
+  color: var(--cyan);
+  font-weight: 500;
+}
+
+/* ─────────────────────────────
+   EDUCATION
+───────────────────────────── */
+.edu-card {
+  background: var(--navy);
+  border: 1px solid rgba(0,212,255,0.12);
+  border-radius: 20px;
+  padding: 2.25rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  max-width: 700px;
+  transition: border-color 0.25s;
+}
+
+.edu-card:hover { border-color: rgba(0,212,255,0.35); }
+
+.edu-icon-wrap {
+  width: 80px; height: 80px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--blue), rgba(0,212,255,0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0,212,255,0.2);
+}
+
+.edu-degree {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.edu-school {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.edu-year-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0,212,255,0.1);
+  color: var(--cyan);
+  border: 1px solid rgba(0,212,255,0.25);
+  padding: 4px 14px;
+  border-radius: 100px;
+}
+
+/* ─────────────────────────────
+   CONTACT
+───────────────────────────── */
+#contact { background: var(--bg2); text-align: center; }
+
+.contact-inner { max-width: 520px; margin: 0 auto; }
+
+.contact-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--navy);
+  border: 1px solid rgba(0,212,255,0.12);
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 0.88rem;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.contact-row:hover { border-color: rgba(0,212,255,0.35); }
+
+.contact-row-icon {
+  color: var(--cyan);
+  font-size: 18px;
+}
+
+/* ─────────────────────────────
+   FOOTER
+───────────────────────────── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid rgba(0,212,255,0.08);
+  text-align: center;
+  padding: 2rem 6%;
+  font-size: 0.78rem;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+}
+
+footer span { color: var(--cyan); }
+
+/* ─────────────────────────────
+   ANIMATIONS
+───────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ─────────────────────────────
+   RESPONSIVE
+───────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-role  { justify-content: center; }
+  .hero-desc  { margin: 0 auto 2rem; }
+  .hero-buttons, .hero-socials { justify-content: center; }
+  .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
+  .photo-ring { width: 240px; height: 240px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .proj-cards { grid-template-columns: 1fr; }
+  .skills-wrap { grid-template-columns: 1fr 1fr; }
+  .cert-cards { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav>
+  <div class="nav-logo">Avinash<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="home">
+  <div class="hero-inner">
+
+    <!-- Text Left -->
+    <div class="hero-text">
+      <div class="hero-greeting">Hello, it's Me</div>
+      <h1 class="hero-name">Avinash Yedururi</h1>
+      <div class="hero-role">
+        And I'm a&nbsp;<span>Sr. Mendix Developer</span>
+      </div>
+      <p class="hero-desc">
+        Mendix Developer with 3.7 years of experience building enterprise web &amp; mobile applications. Specialized in GRC platforms, AI integrations, SAP, and REST APIs — delivering scalable, production-ready solutions.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Hire Me</a>
+        <a href="#projects" class="btn-outline">View Projects</a>
+      </div>
+      <div class="hero-socials">
+        <a href="mailto:avinireddy18@gmail.com" class="social-icon" title="Email">✉</a>
+        <a href="tel:+919030703300" class="social-icon" title="Phone">☎</a>
+        <a href="#" class="social-icon" title="LinkedIn">in</a>
+        <a href="#" class="social-icon" title="GitHub">⌥</a>
+      </div>
+    </div>
+
+    <!-- Photo Right -->
+    <div class="hero-photo-wrap">
+      <div class="photo-ring">
+        <div class="photo-inner">
+          <div class="photo-initials">AY</div>
+          <!-- To use your own photo, replace the div above with:
+          <img src="your-photo.jpg" alt="Avinash" style="width:100%;height:100%;object-fit:cover;"> -->
+        </div>
+        <div class="photo-label">Sr. Mendix Developer</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-tag">// who I am</div>
+    <h2 class="section-heading">About <span>Me</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a <strong style="color:var(--cyan)">Senior Mendix Developer</strong> with 3.7 years of hands-on experience crafting enterprise-grade web and mobile applications on the Mendix low-code platform.</p>
+      <p>My expertise spans <strong style="color:var(--cyan)">GRC platforms, AI API integrations, SAP systems, and REST API development</strong>. I've delivered production applications across complex domains including compliance, field inspections, and enterprise resource management.</p>
+      <p>I thrive in Agile teams, mentor junior developers, and take ownership of the full development lifecycle — from domain modeling and microflow logic to multi-environment deployments and UAT support.</p>
+    </div>
+    <div class="about-stats">
+      <div class="a-stat">
+        <div class="a-stat-num">3.7</div>
+        <div class="a-stat-label">Years of Experience</div>
+      </div>
+      <div class="a-stat">
+        <div class="a-stat-num">3+</div>
+        <div class="a-stat-label">Major Projects</div>
+      </div>
+      <div class="a-stat">
+        <div class="a-stat-num">2</div>
+        <div class="a-stat-label">Certifications</div>
+      </div>
+      <div class="a-stat">
+        <div class="a-stat-num">2</div>
+        <div class="a-stat-label">Companies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-tag">// where I've worked</div>
+    <h2 class="section-heading">Work <span>Experience</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-timeline">
+
+    <div class="exp-item reveal">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">Bareez Technology Solutions</div>
+            <div class="exp-role-tag">Sr. Mendix Developer</div>
+          </div>
+          <div class="exp-period-pill">Current</div>
+        </div>
+        <ul class="exp-list">
+          <li>Designed, developed, and maintained enterprise Mendix web and mobile applications.</li>
+          <li>Collaborated with stakeholders to translate business requirements into functional Mendix models.</li>
+          <li>Developed complex microflows, validations, and business logic for enterprise workflows.</li>
+          <li>Performed performance optimization, debugging, and production issue analysis.</li>
+          <li>Managed deployments across Test, Acceptance, and Production environments.</li>
+          <li>Worked in Agile (Scrum) teams and mentored junior developers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">Virtusa Consultancy Services · Hyderabad</div>
+            <div class="exp-role-tag">Engineer – Mendix Developer</div>
+          </div>
+          <div class="exp-period-pill">Jun 2022 – Jul 2025</div>
+        </div>
+        <ul class="exp-list">
+          <li>Developed and maintained Mendix applications for enterprise clients.</li>
+          <li>Collaborated with business analysts to design domain models and workflows.</li>
+          <li>Implemented complex microflows, validations, and core business logic.</li>
+          <li>Worked on SAP-related applications involving access and system landscape management.</li>
+          <li>Performed unit testing, defect fixing, and supported multi-environment deployments.</li>
+          <li>Participated in Agile (Scrum) teams and knowledge-sharing sessions.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-tag">// what I've built</div>
+    <h2 class="section-heading">Key <span>Projects</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="proj-cards">
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div class="proj-title">Governance, Risk &amp; Compliance (GRC) Platform</div>
+        <div class="proj-period-tag">Oct '25 – Jan '26</div>
+      </div>
+      <div class="proj-divider"></div>
+      <div class="proj-body">
+        <ul>
+          <li>Integrated AI APIs via REST services within the GRC platform.</li>
+          <li>Implemented AI-powered document Q&amp;A with contextual responses from uploaded docs.</li>
+          <li>Designed microflows to interface with AI services and process responses.</li>
+          <li>Integrated AI Issue Identification APIs for compliance detection.</li>
+          <li>Mapped AI outputs to domain models and reviewer workflows.</li>
+          <li>Implemented robust error handling, validation, and logging.</li>
+          <li>Designed domain models, associations, and role-based security.</li>
+          <li>Supported UAT, defect fixing, and multi-environment deployments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div class="proj-title">Dubai FTA – Mobile Inspection Application</div>
+        <div class="proj-period-tag">Jul '25 – Oct '25</div>
+      </div>
+      <div class="proj-divider"></div>
+      <div class="proj-body">
+        <ul>
+          <li>Built a Mendix native mobile app for field inspections.</li>
+          <li>Integrated SAP to synchronize inspection data, equipment &amp; master data.</li>
+          <li>Designed REST-based secure data exchange between Mendix and SAP.</li>
+          <li>Implemented error handling and retry mechanisms for failures.</li>
+          <li>Built responsive, user-friendly mobile UI pages.</li>
+          <li>Developed microflows for inspection processing and submission workflows.</li>
+          <li>Supported production deployments and issue resolution.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-tag">// my tech stack</div>
+    <h2 class="section-heading">Technical <span>Skills</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Low-Code Platform</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Mendix Studio Pro</span>
+        <span class="skill-pill">Mendix Cloud</span>
+        <span class="skill-pill">Native Mobile</span>
+      </div>
+    </div>
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Languages</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">CSS</span>
+      </div>
+    </div>
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Integrations</div>
+      <div class="skill-pills">
+        <span class="skill-pill">REST APIs</span>
+        <span class="skill-pill">SAP Integration</span>
+        <span class="skill-pill">AI APIs</span>
+      </div>
+    </div>
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Tools</div>
+      <div class="skill-pills">
+        <span class="skill-pill">JIRA</span>
+        <span class="skill-pill">Octane</span>
+        <span class="skill-pill">ServiceNow</span>
+      </div>
+    </div>
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Methodology</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Agile / Scrum</span>
+        <span class="skill-pill">UAT</span>
+        <span class="skill-pill">CI/CD Deployments</span>
+      </div>
+    </div>
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Domain Expertise</div>
+      <div class="skill-pills">
+        <span class="skill-pill">GRC Platforms</span>
+        <span class="skill-pill">Microflows</span>
+        <span class="skill-pill">Domain Modeling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CERTIFICATIONS ══ -->
+<section id="certifications">
+  <div class="reveal">
+    <div class="section-tag">// credentials</div>
+    <h2 class="section-heading">Certifi<span>cations</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cert-cards">
+    <div class="cert-card reveal">
+      <div class="cert-badge">🏅</div>
+      <div>
+        <div class="cert-title">Mendix Rapid Developer</div>
+        <div class="cert-issuer">Mendix / Siemens Certified</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge">🎖</div>
+      <div>
+        <div class="cert-title">Mendix Intermediate Developer</div>
+        <div class="cert-issuer">Mendix / Siemens Certified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-tag">// academic background</div>
+    <h2 class="section-heading">Edu<span>cation</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-card reveal">
+    <div class="edu-icon-wrap">🎓</div>
+    <div>
+      <div class="edu-degree">B.Tech — Electronics &amp; Communication Engineering</div>
+      <div class="edu-school">QIS College of Engineering and Technology, Ongole</div>
+      <div class="edu-year-tag">2018 – 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-tag">// get in touch</div>
+    <h2 class="section-heading">Contact <span>Me</span></h2>
+    <div class="section-line" style="margin:0 auto 3rem;"></div>
+  </div>
+  <div class="contact-inner reveal">
+    <p class="contact-desc">Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
+    <div class="contact-items">
+      <div class="contact-row">
+        <span class="contact-row-icon">✉</span>
+        avinireddy18@gmail.com
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-icon">☎</span>
+        +91 9030703300
+      </div>
+    </div>
+    <a href="mailto:avinireddy18@gmail.com" class="btn-primary" style="display:inline-block;">Send Message</a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>Designed &amp; built by <span>Avinash Yedururi</span> · Sr. Mendix Developer · © 2025</p>
+</footer>
+
+<script>
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
